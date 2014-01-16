@@ -7,9 +7,9 @@ class JSlider {
 		
 	};
 	
-	private sliderWrapper : HTMLDivElement;
-	private slidesWrapper : HTMLUListElement;
-	private slides : HTMLLIElement[];
+	private sliderWrapper : JQuery;
+	private slidesWrapper : JQuery;
+	private slides : JQuery;
 	
 	/**
 	 * Creates a new slider out of an HTMLElement
@@ -32,7 +32,9 @@ class JSlider {
 	 */
 	constructor(sliderWrapper : HTMLDivElement, options : Object = {}) {
 		this._options = options['delay'] || 100;
-		this.sliderWrapper = sliderWrapper;
+		this.sliderWrapper = jQuery(sliderWrapper);
+		this.slidesWrapper = this.sliderWrapper.children("ul");
+		this.slides = this.slidesWrapper.children("li");
 		
 	}
 	
