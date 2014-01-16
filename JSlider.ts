@@ -31,7 +31,7 @@ class JSlider {
 	 *     .delay : How long between each slide, -1 for no automated sliding
 	 */
 	constructor(sliderWrapper : HTMLDivElement, options : Object = {}) {
-		this._options = options['delay'] || 100;
+		this._options['delay'] = options['delay'] || 100;
 		this.sliderWrapper = jQuery(sliderWrapper);
 		this.slidesWrapper = this.sliderWrapper.children("ul");
 		this.slides = this.slidesWrapper.children("li");
