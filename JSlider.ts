@@ -34,7 +34,7 @@ class JSlider {
 	constructor(sliderWrapper : any, options : Object = {}) {
 		this._options['delay'] = options['delay'] || 100;
 		this.sliderWrapper = jQuery(sliderWrapper);
-		this.slidesWrapper = this.sliderWrapper.children("ul");
+		this.slidesWrapper = this.sliderWrapper.children("ul").eq(0);
 		this.slides = this.slidesWrapper.children("li");
 		
 		this.currentSlide = 0;
