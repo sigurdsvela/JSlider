@@ -66,7 +66,7 @@ class JSlider {
 		console.log("sliding to " + this.currentSlide);
 		this.slidesWrapper.animate({
 			"right" : (100 * this.currentSlide) + "%"
-		}, this.options.get('delay'));
+		}, this.options.get('duration'));
 	}
 
 	/**
