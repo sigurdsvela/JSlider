@@ -1,7 +1,7 @@
 /**
  * Created by sigurdbergsvela on 15.01.14.
  */
-///<reference path="../defs/jquery.d.ts"/>
+///<reference path="defs/jquery.d.ts"/>
 class JSlider {
 	private _options = {
 		
