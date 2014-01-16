@@ -6,7 +6,7 @@ module jSlider {
 			"button" : {}
 		};
 		
-		private options : Object<string, any> = {
+		private options : Object = {
 			"delay" : null,
 			"duration" : null,
 			"button" : {
@@ -17,7 +17,7 @@ module jSlider {
 			}
 		};
 		
-		constructor(options : Object<string, any> = {}) {
+		constructor(options : Object = {}) {
 			var option : string;
 			for (option in this.options) {
 				if (!this.options.hasOwnProperty(option)) continue;
