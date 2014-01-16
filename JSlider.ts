@@ -60,7 +60,34 @@ class JSlider {
 	public start() : void {
 		
 	}
+	
+	/**
+	 * Slide to the current slide.
+	 */
+	private slideToCurrent() : void {
+		console.log("sliding to " + this.currentSlide);
+		this.slidesWrapper.animate({
+			"right" : (100 * this.currentSlide) + "%"
+		}, this._options['delay']);
+	}
 
+	/**
+	 * Slide to the previous slide
+	 */
+	public prev() : void {
+		this.prevSlide();
+		this.slideToCurrent();
+	}
+
+	/**
+	 * Slide to the next slide
+	 */
+	public next() : void {
+		this.prevSlide();
+		this.slideToCurrent();
+	}
+
+	
 	/**
 	 * Returns the next slide and updates the currentSlide index.
 	 * @return {JQuery} JQuery representation of the next slide.
