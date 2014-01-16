@@ -5,10 +5,17 @@ module jSlider {
 			"duration" : 100 //The duration of the slide animation
 		};
 		
-		private options : string[];
+		private options : Object<string, string> = {
+			"delay" : null,
+			"duration" : null
+		};
 		
-		constructor(options : Object) {
-			this.options = _options.concat(options);
+		constructor(options : Object<string, string> = {}) {
+			var option : string;
+			for (option in this.options) {
+				if (!this.options.hasOwnProperty(option)) continue;
+				this.options[option] = options[option] || JSliderOptions._defaults[option] || null;
+			}
 		}
 
 		/**
