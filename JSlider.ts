@@ -31,6 +31,8 @@ class JSlider {
 	 *     .delay : How long between each slide, -1 for no automated sliding
 	 */
 	constructor(sliderWrapper : any, options : Object = {}) {
+		var _this = this;
+		
 		this.options = new jSlider.JSliderOptions(options);
 		this.sliderWrapper = jQuery(sliderWrapper);
 		this.slidesWrapper = this.sliderWrapper.children("ul").eq(0);
@@ -54,6 +56,46 @@ class JSlider {
 		this.slidesWrapper.css({
 			"display" : "block"
 		});
+		
+		jQuery(function() {
+			var buttons = _this.options.get('button');
+			var button : any;
+			for (button in buttons) {
+				if (!buttons.hasOwnProperty(button)) continue;
+				_this.registerButton(button, buttons[button]);
+			}
+		});
+	}
+
+	/**
+	 * Register a button.
+	 * If an array is give for button, this function will recursively call it self with all of
+	 * them
+	 * @param event next, prev, stop or start.
+	 * @param button Anything that jQuery() accepts 
+	 */
+	public registerButton(event : string, button : any) : void {
+		var _this = this;
+		var register = function(button, callback : () => void) { //Utility function
+			jQuery(button).on('click touchend', function() {
+				callback.call(_this);
+			});
+		};
+		
+		switch(event) {
+			case "next":
+				register(button, this.next);
+				break;
+			case "prev":
+				register(button, this.prev);
+				break;
+			case "stop":
+				register(button, this.stop);
+				break;
+			case "start":
+				register(button, this.start);
+				break;
+		}
 	}
 	
 
