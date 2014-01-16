@@ -40,8 +40,20 @@ class JSlider {
 		this.currentSlide = 0;
 		
 		this.slides.css({
+			"position" : "relative",
 			"height" : "100%",
-			"width" : "100%"
+			"width" : "100%",
+			"display" : "inline-block"
+		});
+		
+		this.slidesWrapper.css({
+			"position":"relative",
+			"font-size": 0,
+			"white-space":"nowrap"
+		});
+		
+		this.slidesWrapper.css({
+			"display" : "block"
 		});
 	}
 	
