@@ -1,7 +1,9 @@
 JSlider
 =======
 
-###Download the lates version from releases to get starts
+<b>Download the lates version from releases to get started :)</b>
+<b>Pull requests are very welcome</b>
+<b>If you discover an issue, create one :)</b>
 
 A slider library that allows for simple creation of slider, and endless customization.
 
