@@ -81,7 +81,7 @@ class JSlider {
 	 * Slide to the next slide
 	 */
 	public next() : void {
-		this.prevSlide();
+		this.nextSlide();
 		this.slideToCurrent();
 	}
 

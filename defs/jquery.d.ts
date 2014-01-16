@@ -2360,6 +2360,7 @@ interface JQuery {
     queue(queueName: string, newQueueOrCallback: any): JQuery;
     queue(newQueueOrCallback: any): JQuery;
 }
+
 declare module "jquery" {
     export = $;
 }

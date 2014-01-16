@@ -2,15 +2,22 @@ module jSlider {
 	export class JSliderOptions {
 		private static _defaults = {
 			"delay" : 4000, //Delay between each slide
-			"duration" : 200 //The duration of the slide animation
+			"duration" : 200, //The duration of the slide animation
+			"button" : {}
 		};
 		
-		private options : Object<string, string> = {
+		private options : Object<string, any> = {
 			"delay" : null,
-			"duration" : null
+			"duration" : null,
+			"button" : {
+				"next" : null,
+				"prev" : null,
+				"stop" : null,
+				"start" : null
+			}
 		};
 		
-		constructor(options : Object<string, string> = {}) {
+		constructor(options : Object<string, any> = {}) {
 			var option : string;
 			for (option in this.options) {
 				if (!this.options.hasOwnProperty(option)) continue;
@@ -23,7 +30,7 @@ module jSlider {
 		 * @param optionName
 		 * @returns {string}
 		 */
-		public get(optionName : string) {
+		public get(optionName : string) : any {
 			return this.options[optionName];
 		}
 	}
