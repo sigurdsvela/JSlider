@@ -2,11 +2,9 @@
  * Created by sigurdbergsvela on 15.01.14.
  */
 ///<reference path="defs/jquery.d.ts"/>
+///<reference path="jSlider/JSliderOptions.ts"/>
 class JSlider {
-	private _options = {
-		
-	};
-	
+	private options : jSlider.JSliderOptions;
 	private sliderWrapper : JQuery;
 	private slidesWrapper : JQuery;
 	private slides : JQuery;
@@ -32,7 +30,7 @@ class JSlider {
 	 *     .delay : How long between each slide, -1 for no automated sliding
 	 */
 	constructor(sliderWrapper : any, options : Object = {}) {
-		this._options['delay'] = options['delay'] || 100;
+		this.options = new jSlider.JSliderOptions(options);
 		this.sliderWrapper = jQuery(sliderWrapper);
 		this.slidesWrapper = this.sliderWrapper.children("ul").eq(0);
 		this.slides = this.slidesWrapper.children("li");
@@ -68,7 +66,7 @@ class JSlider {
 		console.log("sliding to " + this.currentSlide);
 		this.slidesWrapper.animate({
 			"right" : (100 * this.currentSlide) + "%"
-		}, this._options['delay']);
+		}, this.options.get('delay'));
 	}
 
 	/**
