@@ -48,6 +48,32 @@ class JSlider {
 	public start() : void {
 		
 	}
+
+	/**
+	 * Returns the next slide and updates the currentSlide index.
+	 * @return {JQuery} JQuery representation of the next slide.
+	 */
+	public nextSlide() : JQuery { //Get the next slide
+		this.currentSlide = this.currentSlide + 1 > this.slides.length ? 0 : this.currentSlide + 1;
+		return this.getCurrentSlide();
+	}
+
+	/**
+	 * Returns the previous slide and updates the currentSlide index.
+	 * @return {JQuery} JQuery representation of the previous slide.
+	 */
+	public prevSlide() : JQuery { //Get the prevoius slide
+		this.currentSlide = this.currentSlide - 1 < 0 ? this.slides.length : this.currentSlide - 1;
+		return this.getCurrentSlide();
+	}
+
+	/**
+	 * Gets the jquery representation of the current slide
+	 * @returns {JQuery} JQuery representation of the current slide.
+	 */
+	public getCurrentSlide() : JQuery {
+		return this.slides.eq(this.currentSlide);
+	}
 	
 	
 }
