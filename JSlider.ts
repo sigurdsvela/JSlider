@@ -10,6 +10,7 @@ class JSlider {
 	private slides : JQuery;
 	private currentSlide : number;
 	private timeout : number;
+	private eventListeners : Array<Array<(jQuery) => void>>;
 	
 	/**
 	 * Creates a new slider out of an HTMLElement
@@ -40,6 +41,12 @@ class JSlider {
 		
 		this.currentSlide = 0;
 		
+		
+		//Set up the event listeners array 
+		this.eventListeners = this.options.get('on');
+		console.log(this.eventListeners);
+		
+		
 		this.slides.css({
 			"position" : "relative",
 			"height" : "100%",
@@ -65,6 +72,28 @@ class JSlider {
 				_this.registerButton(button, buttons[button]);
 			}
 		});
+	}
+
+
+
+	/**
+	 * Register a callback that should be called on <param>event</event>
+	 * @param event
+	 * @param callback
+	 */
+	public on(event : string, callback : (JQuery) => void) {
+		this.eventListeners[event].push(callback);
+	}
+	
+	/**
+	 * Call the event listeners for a spesific event
+	 * @param event The event
+	 */
+	private trigger(event : string) {
+		var listeners : {(JQuery) : void}[] = this.eventListeners[event];
+		for (var i = 0; i < listeners.length; i++) {
+			listeners[i](this.getCurrentSlide());
+		}
 	}
 
 	/**
@@ -103,6 +132,7 @@ class JSlider {
 	 * Start the slider
 	 */
 	public start() : void {
+		this.trigger('start');
 		var _this = this;
 		this.timeout = setInterval(() : void => {
 			_this.next();
@@ -113,6 +143,7 @@ class JSlider {
 	 * Stop the slider
 	 */
 	public stop() : void {
+		this.trigger('stop');
 		clearInterval(this.timeout);
 	}
 	
@@ -130,6 +161,8 @@ class JSlider {
 	 * Slide to the previous slide
 	 */
 	public prev() : void {
+		this.trigger('slide');
+		this.trigger('prev');
 		this.prevSlide();
 		this.slideToCurrent();
 	}
@@ -138,6 +171,8 @@ class JSlider {
 	 * Slide to the next slide
 	 */
 	public next() : void {
+		this.trigger('slide');
+		this.trigger('next');
 		this.nextSlide();
 		this.slideToCurrent();
 	}

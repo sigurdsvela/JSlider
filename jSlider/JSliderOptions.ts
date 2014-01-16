@@ -14,6 +14,13 @@ module jSlider {
 				"prev" : null,
 				"stop" : null,
 				"start" : null
+			},
+			"on" : {
+				"slide" : null,
+				"next" : null,
+				"prev" : null,
+				"start" : null,
+				"stop" : null
 			}
 		};
 		
@@ -22,6 +29,16 @@ module jSlider {
 			for (option in this.options) {
 				if (!this.options.hasOwnProperty(option)) continue;
 				this.options[option] = options[option] || JSliderOptions._defaults[option] || null;
+			}
+			
+			//Change event listeners to [function(){}] if function(){}
+			var eventListeners = this.options['on'];
+			var key : string;
+			for (key in eventListeners) {
+				if (!eventListeners.hasOwnProperty(key)) continue;
+				if (typeof eventListeners[key] === 'function') {
+					eventListeners[key] = Array(eventListeners[key]);
+				}
 			}
 		}
 
