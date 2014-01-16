@@ -38,6 +38,11 @@ class JSlider {
 		this.slides = this.slidesWrapper.children("li");
 		
 		this.currentSlide = 0;
+		
+		this.slides.css({
+			"height" : "100%",
+			"width" : "100%"
+		});
 	}
 	
 	public start() : void {
