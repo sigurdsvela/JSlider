@@ -9,6 +9,7 @@ class JSlider {
 	private slidesWrapper : JQuery;
 	private slides : JQuery;
 	private currentSlide : number;
+	private timeout : number;
 	
 	/**
 	 * Creates a new slider out of an HTMLElement
@@ -55,8 +56,22 @@ class JSlider {
 		});
 	}
 	
+
+	/**
+	 * Start the slider
+	 */
 	public start() : void {
-		
+		var _this = this;
+		this.timeout = setInterval(() : void => {
+			_this.next();
+		}, this.options.get('delay'));
+	}
+
+	/**
+	 * Stop the slider
+	 */
+	public stop() : void {
+		clearInterval(this.timeout);
 	}
 	
 	/**
