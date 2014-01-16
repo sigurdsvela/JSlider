@@ -10,6 +10,7 @@ class JSlider {
 	private sliderWrapper : JQuery;
 	private slidesWrapper : JQuery;
 	private slides : JQuery;
+	private currentSlide : number;
 	
 	/**
 	 * Creates a new slider out of an HTMLElement
@@ -36,6 +37,7 @@ class JSlider {
 		this.slidesWrapper = this.sliderWrapper.children("ul");
 		this.slides = this.slidesWrapper.children("li");
 		
+		this.currentSlide = 0;
 	}
 	
 	public start() : void {
