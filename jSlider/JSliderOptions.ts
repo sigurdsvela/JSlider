@@ -1,14 +1,8 @@
 module jSlider {
 	export class JSliderOptions {
-		private static _defaults = {
-			"delay" : 4000, //Delay between each slide
-			"duration" : 200, //The duration of the slide animation
-			"button" : {}
-		};
-		
 		private options : Object = {
-			"delay" : null,
-			"duration" : null,
+			"delay" : 4000,
+			"duration" : 200,
 			"button" : {
 				"next" : null,
 				"prev" : null,
@@ -16,11 +10,11 @@ module jSlider {
 				"start" : null
 			},
 			"on" : {
-				"slide" : null,
-				"next" : null,
-				"prev" : null,
-				"start" : null,
-				"stop" : null
+				"slide" : [],
+				"next" : [],
+				"prev" : [],
+				"start" : [],
+				"stop" : []
 			}
 		};
 		
@@ -28,7 +22,7 @@ module jSlider {
 			var option : string;
 			for (option in this.options) {
 				if (!this.options.hasOwnProperty(option)) continue;
-				this.options[option] = options[option] || JSliderOptions._defaults[option] || null;
+				this.options[option] = options[option] || this.options[option];
 			}
 			
 			//Change event listeners to [function(){}] if function(){}
@@ -37,7 +31,7 @@ module jSlider {
 			for (key in eventListeners) {
 				if (!eventListeners.hasOwnProperty(key)) continue;
 				if (typeof eventListeners[key] === 'function') {
-					eventListeners[key] = Array(eventListeners[key]);
+					this.options['on'][key] = Array(eventListeners[key]);
 				}
 			}
 		}
