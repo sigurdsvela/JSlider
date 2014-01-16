@@ -44,7 +44,6 @@ class JSlider {
 		
 		//Set up the event listeners array 
 		this.eventListeners = this.options.get('on');
-		console.log(this.eventListeners);
 		
 		
 		this.slides.css({
