@@ -49,6 +49,25 @@ Currently avaible options are:
 <ul>
 	<li><pre>(number)delay</pre> : (ms) Set how long JSlider should wait before it slide.</li>
 	<li><pre>(number)duration</pre> : (ms) Sets the animation duration</li>
+	<li>
+		<pre>button</pre>
+		<ul>
+			<li><pre>(jQuery|HTMLELement|selector)next</pre> : Register a button to use as next button</li>
+			<li><pre>(jQuery|HTMLELement|selector)prev</pre> : Register a button to use as prev button</li>
+			<li><pre>(jQuery|HTMLELement|selector)start</pre> : Register a button to use as start button</li>
+			<li><pre>(jQuery|HTMLELement|selector)stop</pre> : Register a button to use as stop button</li>
+		</ul>
+	</li>
+	<li>
+		<pre>on</pre>
+		<ul>
+			<li><pre>((jQuery currentSlide) => any)slide</pre> : Register an event that is triggered when the slider slides</li>
+			<li><pre>((jQuery currentSlide) => any)next</pre> : Register an event that is triggered when the slider slides to the next slide</li>
+			<li><pre>((jQuery currentSlide) => any)pre</pre> : Register an event that is triggered when the slider slides to the previous slide</li>
+			<li><pre>((jQuery currentSlide) => any)stop</pre> : Register an event that is triggered when the slider slides is stoped</li>
+			<li><pre>((jQuery currentSlide) => any)start</pre> : Register an event that is triggered when the slider slides is started</li>
+		</ul>
+	</li>
 </ul>
 
 
