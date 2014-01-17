@@ -66,11 +66,11 @@ Currently avaible options are:
 	<li>
 		<b>on</b>
 		<ul>
-			<li><b>((jQuery currentSlide) => any)slide</b> : Register an event that is triggered when the slider slides</li>
-			<li><b>((jQuery currentSlide) => any)next</b> : Register an event that is triggered when the slider slides to the next slide</li>
-			<li><b>((jQuery currentSlide) => any)pre</b> : Register an event that is triggered when the slider slides to the previous slide</li>
-			<li><b>((jQuery currentSlide) => any)stop</b> : Register an event that is triggered when the slider slides is stoped</li>
-			<li><b>((jQuery currentSlide) => any)start</b> : Register an event that is triggered when the slider slides is started</li>
+			<li><b>(function(currentSlide))slide</b> : Register an event that is triggered when the slider slides</li>
+			<li><b>(function(currentSlide)) => any)next</b> : Register a function that is triggered when the slider slides to the next slide</li>
+			<li><b>(function(currentSlide)) => any)pre</b> : Register a function that is triggered when the slider slides to the previous slide</li>
+			<li><b>(function(currentSlide)) => any)stop</b> : Register a function that is triggered when the slider slides is stoped</li>
+			<li><b>(function(currentSlide)) => any)start</b> : Register a function that is triggered when the slider slides is started</li>
 		</ul>
 	</li>
 </ul>
