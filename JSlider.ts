@@ -34,36 +34,36 @@ class JSlider {
 	constructor(sliderWrapper : any, options : Object = {}) {
 		var _this = this;
 		
-		this.options = new jSlider.JSliderOptions(options);
-		this.sliderWrapper = jQuery(sliderWrapper);
-		this.slidesWrapper = this.sliderWrapper.children("ul").eq(0);
-		this.slides = this.slidesWrapper.children("li");
-		
-		this.currentSlide = 0;
-		
-		
-		//Set up the event listeners array 
-		this.eventListeners = this.options.get('on');
-		
-		
-		this.slides.css({
-			"position" : "relative",
-			"height" : "100%",
-			"width" : "100%",
-			"display" : "inline-block"
-		});
-		
-		this.slidesWrapper.css({
-			"position":"relative",
-			"font-size": 0,
-			"white-space":"nowrap"
-		});
-		
-		this.slidesWrapper.css({
-			"display" : "block"
-		});
-		
-		jQuery(function() {
+		jQuery(function($) {
+			_this.options = new jSlider.JSliderOptions(options);
+			_this.sliderWrapper = jQuery(sliderWrapper);
+			_this.slidesWrapper = _this.sliderWrapper.children("ul").eq(0);
+			_this.slides = _this.slidesWrapper.children("li");
+			
+			_this.currentSlide = 0;
+			
+			
+			//Set up the event listeners array 
+			_this.eventListeners = _this.options.get('on');
+			
+			
+			_this.slides.css({
+				"position" : "relative",
+				"height" : "100%",
+				"width" : "100%",
+				"display" : "inline-block"
+			});
+			
+			_this.slidesWrapper.css({
+				"position":"relative",
+				"font-size": 0,
+				"white-space":"nowrap"
+			});
+			
+			_this.slidesWrapper.css({
+				"display" : "block"
+			});
+			
 			var buttons = _this.options.get('button');
 			var button : any;
 			for (button in buttons) {
