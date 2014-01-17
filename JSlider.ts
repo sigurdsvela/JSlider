@@ -182,7 +182,7 @@ class JSlider {
 	 * @return {JQuery} JQuery representation of the next slide.
 	 */
 	public nextSlide() : JQuery { //Get the next slide
-		this.currentSlide = (this.currentSlide + 1 > this.slides.length) ? 0 : this.currentSlide + 1;
+		this.currentSlide = (this.currentSlide + 1 > this.slides.length-1) ? 0 : this.currentSlide + 1;
 		return this.getCurrentSlide();
 	}
 
