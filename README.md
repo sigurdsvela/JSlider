@@ -1,6 +1,5 @@
 JSlider
 =======
-
 <b>Download the lates version from releases to get started :)</b>
 <b>Pull requests are very welcome</b>
 <b>If you discover an issue, create one :)</b>
@@ -87,3 +86,8 @@ There is also some avaible function in the JSlider object.
 	<li><b>(void)prev()</b> : Go to the previous slide </li>
 </ul>
 
+
+<b>Dependecies</b>
+<ul>
+	<li>jQuery</li>
+</ul>
