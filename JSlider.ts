@@ -32,20 +32,18 @@ class JSlider {
 	 *     .delay : How long between each slide, -1 for no automated sliding
 	 */
 	constructor(sliderWrapper : any, options : Object = {}) {
-		var _this = this;
+		this.options = new jSlider.JSliderOptions(options);
 		
+		this.currentSlide = 0;
+		
+		//Set up the event listeners array
+		this.eventListeners = this.options.get('on');
+		
+		var _this = this;
 		jQuery(function($) {
-			_this.options = new jSlider.JSliderOptions(options);
 			_this.sliderWrapper = jQuery(sliderWrapper);
 			_this.slidesWrapper = _this.sliderWrapper.children("ul").eq(0);
 			_this.slides = _this.slidesWrapper.children("li");
-			
-			_this.currentSlide = 0;
-			
-			
-			//Set up the event listeners array 
-			_this.eventListeners = _this.options.get('on');
-			
 			
 			_this.slides.css({
 				"position" : "relative",
