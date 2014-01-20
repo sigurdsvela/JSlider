@@ -1,6 +1,5 @@
 JSlider
 =======
-
 <b>Download the lates version from releases to get started :)</b>
 <b>Pull requests are very welcome</b>
 <b>If you discover an issue, create one :)</b>
@@ -66,11 +65,11 @@ Currently avaible options are:
 	<li>
 		<b>on</b>
 		<ul>
-			<li><b>((jQuery currentSlide) => any)slide</b> : Register an event that is triggered when the slider slides</li>
-			<li><b>((jQuery currentSlide) => any)next</b> : Register an event that is triggered when the slider slides to the next slide</li>
-			<li><b>((jQuery currentSlide) => any)pre</b> : Register an event that is triggered when the slider slides to the previous slide</li>
-			<li><b>((jQuery currentSlide) => any)stop</b> : Register an event that is triggered when the slider slides is stoped</li>
-			<li><b>((jQuery currentSlide) => any)start</b> : Register an event that is triggered when the slider slides is started</li>
+			<li><b>(function(currentSlide))slide</b> : Register an event that is triggered when the slider slides</li>
+			<li><b>(function(currentSlide)) => any)next</b> : Register a function that is triggered when the slider slides to the next slide</li>
+			<li><b>(function(currentSlide)) => any)pre</b> : Register a function that is triggered when the slider slides to the previous slide</li>
+			<li><b>(function(currentSlide)) => any)stop</b> : Register a function that is triggered when the slider slides is stoped</li>
+			<li><b>(function(currentSlide)) => any)start</b> : Register a function that is triggered when the slider slides is started</li>
 		</ul>
 	</li>
 </ul>
@@ -87,3 +86,8 @@ There is also some avaible function in the JSlider object.
 	<li><b>(void)prev()</b> : Go to the previous slide </li>
 </ul>
 
+
+<b>Dependecies</b>
+<ul>
+	<li>jQuery</li>
+</ul>
