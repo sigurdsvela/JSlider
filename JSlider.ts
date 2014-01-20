@@ -3,6 +3,7 @@
  */
 ///<reference path="defs/jquery.d.ts"/>
 ///<reference path="jSlider/Options.ts"/>
+///<reference path="jSlider/Effect.ts"/>
 class JSlider {
 	private options : jSlider.Options;
 	private sliderWrapper : JQuery;
@@ -11,6 +12,7 @@ class JSlider {
 	private currentSlide : number;
 	private timeout : number;
 	private eventListeners : Array<Array<(jQuery) => void>>;
+	private effect : jSlider.Effect;
 	
 	/**
 	 * Creates a new slider out of an HTMLElement
@@ -38,6 +40,8 @@ class JSlider {
 		
 		//Set up the event listeners array
 		this.eventListeners = this.options.get('on');
+		
+		this.effect = jSlider.Effect.SLIDE;
 		
 		var _this = this;
 		jQuery(function($) {
@@ -143,54 +147,27 @@ class JSlider {
 		this.trigger('stop');
 		clearInterval(this.timeout);
 	}
-	
-	/**
-	 * Slide to the current slide.
-	 */
-	private slideToCurrent() : void {
-		console.log("sliding to " + this.currentSlide);
-		this.slidesWrapper.animate({
-			"right" : (100 * this.currentSlide) + "%"
-		}, this.options.get('duration'));
-	}
 
 	/**
 	 * Slide to the previous slide
 	 */
 	public prev() : void {
+		var _prevSlide:number = this.currentSlide;
 		this.trigger('slide');
 		this.trigger('prev');
-		this.prevSlide();
-		this.slideToCurrent();
+		this.currentSlide = (this.currentSlide - 1 < 0) ? this.slides.length-1 : this.currentSlide - 1;
+		this.effect.gotoSlide(this.slidesWrapper, this.slides, _prevSlide, this.currentSlide, this.options.get('duration'));
 	}
 
 	/**
 	 * Slide to the next slide
 	 */
 	public next() : void {
+		var _prevSlide:number = this.currentSlide;
 		this.trigger('slide');
 		this.trigger('next');
-		this.nextSlide();
-		this.slideToCurrent();
-	}
-
-	
-	/**
-	 * Returns the next slide and updates the currentSlide index.
-	 * @return {JQuery} JQuery representation of the next slide.
-	 */
-	public nextSlide() : JQuery { //Get the next slide
 		this.currentSlide = (this.currentSlide + 1 > this.slides.length-1) ? 0 : this.currentSlide + 1;
-		return this.getCurrentSlide();
-	}
-
-	/**
-	 * Returns the previous slide and updates the currentSlide index.
-	 * @return {JQuery} JQuery representation of the previous slide.
-	 */
-	public prevSlide() : JQuery { //Get the prevoius slide
-		this.currentSlide = (this.currentSlide - 1 < 0) ? this.slides.length-1 : this.currentSlide - 1;
-		return this.getCurrentSlide();
+		this.effect.gotoSlide(this.slidesWrapper, this.slides, _prevSlide, this.currentSlide, this.options.get('duration'));
 	}
 
 	/**
