@@ -300,7 +300,12 @@ interface JQueryKeyEventObject extends JQueryInputEventObject {
 }
 
 interface JQueryPopStateEventObject extends BaseJQueryEventObject {
-    originalEvent: PopStateEvent;
+    originalEvent: JQueryOriginalEvent;
+}
+
+interface JQueryOriginalEvent extends PopStateEvent {
+	pageX : number;
+	pageY : number;
 }
 
 interface JQueryEventObject extends BaseJQueryEventObject, JQueryInputEventObject, JQueryMouseEventObject, JQueryKeyEventObject, JQueryPopStateEventObject {
