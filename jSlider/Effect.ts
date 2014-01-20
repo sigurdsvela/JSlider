@@ -1,7 +1,7 @@
 module jSlider {
 	export class Effect {
-		private initcb:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number) => void;
-		private goto:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) => void;
+		private initFunction:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number) => void;
+		private gotoFunction:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) => void;
 		private fraction:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number) => void;
 		private canCycle:boolean;
 
@@ -11,7 +11,7 @@ module jSlider {
 		 * on different types of switches
 		 * @param init A method that is ran when the document is ready, and this effect was chosen
 		 * this is used to set up the slides as whished.
-		 * @param goto A function that is ran when going directly to a slide.
+		 * @param gotoFunction A function that is ran when going directly to a slide.
 		 * The function receives three parameters
 		 *    currentSlide : The slide we are going form
 		 *    nextSlide : The slide we are going to
@@ -23,19 +23,19 @@ module jSlider {
 		 * @param canCycle Whether or not this effect is able to go form the last to the first, or if it
 		 *    does not.
 		 */
-			constructor(init:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number) => void, goto:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) => void, fraction:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number) => void, canCycle:boolean = true) {
-			this.initcb = init;
-			this.goto = goto;
+			constructor(init:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number) => void, gotoFunction:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) => void, fraction:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number) => void, canCycle:boolean = true) {
+			this.initFunction = init;
+			this.gotoFunction = gotoFunction;
 			this.fraction = fraction;
 			this.canCycle = canCycle;
 		}
 
 		public init(slidesWrapper:JQuery, slides:JQuery, currentSlide:number):void {
-			this.initcb(slidesWrapper, slides, currentSlide);
+			this.initFunction(slidesWrapper, slides, currentSlide);
 		}
 
 		public gotoSlide(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number):void {
-			this.goto(slidesWrapper, slides, currentSlide, nextSlide, duration);
+			this.gotoFunction(slidesWrapper, slides, currentSlide, nextSlide, duration);
 		}
 
 		public fractionSlide(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number):void {
