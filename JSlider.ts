@@ -41,7 +41,7 @@ class JSlider {
 		//Set up the event listeners array
 		this.eventListeners = this.options.get('on');
 		
-		this.effect = jSlider.Effect.SLIDE;
+		this.effect = <jSlider.Effect>this.options.get('effect');
 		
 		var _this = this;
 		jQuery(function($) {

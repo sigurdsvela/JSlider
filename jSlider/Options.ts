@@ -3,6 +3,7 @@ module jSlider {
 		private options : Object = {
 			"delay" : 4000,
 			"duration" : 200,
+			"effect" : jSlider.Effect.SLIDE,
 			"button" : {
 				"next" : null,
 				"prev" : null,
