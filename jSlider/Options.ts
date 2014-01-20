@@ -1,5 +1,5 @@
 module jSlider {
-	export class JSliderOptions {
+	export class Options {
 		private options : Object = {
 			"delay" : 4000,
 			"duration" : 200,

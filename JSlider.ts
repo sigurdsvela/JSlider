@@ -2,9 +2,9 @@
  * Created by sigurdbergsvela on 15.01.14.
  */
 ///<reference path="defs/jquery.d.ts"/>
-///<reference path="jSlider/JSliderOptions.ts"/>
+///<reference path="jSlider/Options.ts"/>
 class JSlider {
-	private options : jSlider.JSliderOptions;
+	private options : jSlider.Options;
 	private sliderWrapper : JQuery;
 	private slidesWrapper : JQuery;
 	private slides : JQuery;
@@ -32,7 +32,7 @@ class JSlider {
 	 *     .delay : How long between each slide, -1 for no automated sliding
 	 */
 	constructor(sliderWrapper : any, options : Object = {}) {
-		this.options = new jSlider.JSliderOptions(options);
+		this.options = new jSlider.Options(options);
 		
 		this.currentSlide = 0;
 		
