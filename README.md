@@ -53,6 +53,7 @@ Currently avaible options are:
 <ul>
 	<li><b>(number)delay</b> : (ms) Set how long JSlider should wait before it slide.</li>
 	<li><b>(number)duration</b> : (ms) Sets the animation duration</li>
+	<li><b>(jSlider.Effect)</b> : What effect should be use on transitioning. Default is jSlider.Effect.SLIDE</li>
 	<li>
 		<b>button</b>
 		<ul>
