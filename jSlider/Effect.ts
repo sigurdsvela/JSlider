@@ -45,5 +45,16 @@ module jSlider {
 				
 			}
 		);
+		public static FADE : Effect = new Effect(
+			function(slidesWrapper : JQuery, slides : JQuery, currentSlide : number, nextSlide : number, duration : number) {
+				slides.eq(nextSlide).css({display:'none'});
+				slides.eq(currentSlide).fadeOut(duration/2, function() {
+					slides.eq(nextSlide).fadeIn(duration/2);
+				});
+			},
+			function(slidesWrapper : JQuery, slides : JQuery, currentSlide : number, nextSlide : number, fraction : number) {
+
+			}
+		);
 	}
 }
