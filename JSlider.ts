@@ -179,7 +179,8 @@ class JSlider {
 	public registerButton(event : string, button : any) : void {
 		var _this = this;
 		var register = function(button, callback : () => void) { //Utility function
-			jQuery(button).on('click touchend', function() {
+			var event = ('ontouchstart' in window) ? 'touchstart' : 'mousedown';
+			jQuery(button).on(event, function() {
 				callback.call(_this);
 			});
 		};
