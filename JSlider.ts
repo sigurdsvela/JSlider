@@ -44,7 +44,7 @@ class JSlider {
 	 * options
 	 *     .delay : How long between each slide, -1 for no automated sliding
 	 */
-		constructor(sliderWrapper:any, options:Object = {}) {
+	constructor(sliderWrapper:any, options:Object = {}) {
 		this.options = new jSlider.Options(options);
 
 		this.currentSlide = 0;
@@ -55,7 +55,7 @@ class JSlider {
 		this.effect = <jSlider.Effect>this.options.get('effect');
 
 		var _this = this;
-
+		
 		jQuery(function ($) {
 			_this.sliderWrapper = jQuery(sliderWrapper);
 			_this.slidesWrapper = _this.sliderWrapper.children("ul").eq(0);
@@ -129,12 +129,12 @@ class JSlider {
 			_this.slidesWrapper.css({
 				"position": "relative",
 				"font-size": 0,
-				"white-space": "nowrap"
-			});
-
-			_this.slidesWrapper.css({
+				"white-space": "nowrap",
+				"height": "100%",
+				"width": "100%",
 				"display": "block"
 			});
+
 
 			_this.effect.init(_this.slidesWrapper, _this.slides, _this.currentSlide); //Initilize the effect
 
