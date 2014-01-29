@@ -23,7 +23,7 @@ module jSlider {
 		 * @param canCycle Whether or not this effect is able to go form the last to the first, or if it
 		 *    does not.
 		 */
-			constructor(init:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number) => void, gotoFunction:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) => void, fraction:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number) => void, canCycle:boolean = true) {
+		constructor(init:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number) => void, gotoFunction:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) => void, fraction:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number) => void, canCycle:boolean = true) {
 			this.initFunction = init;
 			this.gotoFunction = gotoFunction;
 			this.fraction = fraction;
