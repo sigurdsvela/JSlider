@@ -48,6 +48,8 @@ class JSlider {
 		this.options = new jSlider.Options(options);
 
 		this.currentSlide = 0;
+		
+		this.fraction = 0;
 
 		//Set up the event listeners array
 		this.eventListeners = this.options.get('on');
