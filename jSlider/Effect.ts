@@ -86,8 +86,8 @@ module jSlider {
 				slides.eq(currentSlide).css({opacity: 1});
 			},
 			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) {
-				slides.eq(currentSlide).animate({opacity: 0});
-				slides.eq(nextSlide).animate({opacity: 1});
+				slides.eq(currentSlide).animate({opacity: 0}, duration);
+				slides.eq(nextSlide).animate({opacity: 1}, duration);
 			},
 			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number) {
 				slides.eq(nextSlide).css({opacity: Math.abs(fraction)});
