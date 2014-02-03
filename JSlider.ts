@@ -164,8 +164,7 @@ class JSlider {
 	 * @param event The event
 	 */
 	private trigger(event:string) {
-		var listeners:{(JQuery) : void
-		}[] = this.eventListeners[event];
+		var listeners:{(JQuery) : void}[] = this.eventListeners[event];
 		for (var i = 0; i < listeners.length; i++) {
 			listeners[i](this.getCurrentSlide());
 		}
