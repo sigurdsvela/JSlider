@@ -255,12 +255,12 @@ class JSlider {
 		this.fraction = 0;
 
 		if (!(!this.effect.getCanCycle() && this.atFirstSlide())) {
-			this.trigger('slide');
-			this.trigger('prev');
 			this.currentSlide = this.atFirstSlide() ? this.slides.length - 1 : this.currentSlide - 1;
 		}
 
 		this.effect.gotoSlide(this.slidesWrapper, this.slides, _prevSlide, this.currentSlide, duration);
+		this.trigger('slide');
+		this.trigger('prev');
 	}
 
 	/**
@@ -275,12 +275,12 @@ class JSlider {
 		this.fraction = 0;
 
 		if (!(!this.effect.getCanCycle() && this.atLastSlide())) {
-			this.trigger('slide');
-			this.trigger('next');
 			this.currentSlide = this.atLastSlide() ? 0 : this.currentSlide + 1;
 		}
 
 		this.effect.gotoSlide(this.slidesWrapper, this.slides, _prevSlide, this.currentSlide, duration);
+		this.trigger('slide');
+		this.trigger('next');
 	}
 
 	/**
