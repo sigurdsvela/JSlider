@@ -21,7 +21,6 @@ module jSlider {
 
 		constructor(options:Object = {}) {
 			jQuery.extend(true, this.options, options);
-			console.log(this.options['on']);
 
 			//Change event listeners to [function(){}] if function(){}
 			var eventListeners = this.options['on'];
