@@ -11,7 +11,7 @@ module jSlider {
 		 * on different types of switches
 		 */
 		constructor(effect : jSlider.IEffect) {
-			this.initFunction = effect.init;
+			this.initFunction = effect.init || function(){};
 			this.gotoFunction = effect.goto;
 			this.fraction = effect.fraction;
 			this.canCycle = effect.canCycle();
