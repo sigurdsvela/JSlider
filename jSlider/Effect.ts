@@ -74,6 +74,28 @@ module jSlider {
 			/*CYCLES*/
 			false
 		);
+
+		public static REWIND_SLIDE:Effect = new Effect(
+			/*INIT*/
+			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number):void {
+			},
+			/*GOTO SLIDE*/
+			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) {
+				slidesWrapper.animate({
+					right: ((100) * nextSlide) + "%"
+				}, duration);
+			},
+			/*FRACTION SLIDING*/
+			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number) {
+				fraction = Math.abs(fraction);
+				slidesWrapper.css({
+					right: ((((nextSlide - currentSlide) * fraction) + currentSlide) * 100) + "%"
+				})
+			},
+			/*CYCLES*/
+			true
+		);
+		
 		public static FADE:Effect = new Effect(
 			/*INIT*/
 			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number):void {
