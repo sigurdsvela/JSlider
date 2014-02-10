@@ -9,25 +9,12 @@ module jSlider {
 		 * Create a new effect.
 		 * Effects are built up of function that are ran
 		 * on different types of switches
-		 * @param init A method that is ran when the document is ready, and this effect was chosen
-		 * this is used to set up the slides as whished.
-		 * @param gotoFunction A function that is ran when going directly to a slide.
-		 * The function receives three parameters
-		 *    currentSlide : The slide we are going form
-		 *    nextSlide : The slide we are going to
-		 *    direction : The direction. -1 prev, +1 next.
-		 * @param fraction Gets ran when trying to slide between slides.
-		 *    currentSlide : The slide we are going form
-		 *    nextSlide : The slide we are going to
-		 *    fraction : A number between -1 and 1. How much should we slide.
-		 * @param canCycle Whether or not this effect is able to go form the last to the first, or if it
-		 *    does not.
 		 */
-		constructor(init:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number) => void, gotoFunction:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) => void, fraction:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number) => void, canCycle:boolean = true) {
-			this.initFunction = init;
-			this.gotoFunction = gotoFunction;
-			this.fraction = fraction;
-			this.canCycle = canCycle;
+		constructor(effect : jSlider.IEffect) {
+			this.initFunction = effect.init;
+			this.gotoFunction = effect.goto;
+			this.fraction = effect.fraction;
+			this.canCycle = effect.canCycle();
 		}
 
 		public init(slidesWrapper:JQuery, slides:JQuery, currentSlide:number):void {
@@ -54,51 +41,46 @@ module jSlider {
 		/*
 		 * Effects
 		 * */
-		public static SLIDE:Effect = new Effect(
-			/*INIT*/
-			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number):void {
+		public static SLIDE:Effect = new Effect({
+			init : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number):void => {
 			},
-			/*GOTO SLIDE*/
-			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) {
+			goto : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) : void => {
 				slidesWrapper.animate({
 					right: ((100) * nextSlide) + "%"
 				}, duration);
 			},
-			/*FRACTION SLIDING*/
-			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number) {
+			fraction : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number) : void => {
 				fraction = Math.abs(fraction);
 				slidesWrapper.css({
 					right: ((((nextSlide - currentSlide) * fraction) + currentSlide) * 100) + "%"
 				})
 			},
-			/*CYCLES*/
-			false
-		);
+			canCycle : () : boolean => {
+				return false;
+			}
+		});
 
-		public static REWIND_SLIDE:Effect = new Effect(
-			/*INIT*/
-			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number):void {
+		public static REWIND_SLIDE:Effect = new Effect({
+			init : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number):void => {
 			},
-			/*GOTO SLIDE*/
-			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) {
+			goto : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) : void => {
 				slidesWrapper.animate({
 					right: ((100) * nextSlide) + "%"
 				}, duration);
 			},
-			/*FRACTION SLIDING*/
-			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number) {
+			fraction : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number) : void => {
 				fraction = Math.abs(fraction);
 				slidesWrapper.css({
 					right: ((((nextSlide - currentSlide) * fraction) + currentSlide) * 100) + "%"
 				})
 			},
-			/*CYCLES*/
-			true
-		);
+			canCycle : () : boolean => {
+				return true;
+			}
+		});
 		
-		public static FADE:Effect = new Effect(
-			/*INIT*/
-			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number):void {
+		public static FADE:Effect = new Effect({
+			init : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number) : void => {
 				slidesWrapper.css({
 					"position": "relative"
 				});
@@ -112,18 +94,56 @@ module jSlider {
 				slides.css({opacity: 0});
 				slides.eq(currentSlide).css({opacity: 1});
 			},
-			/*GOTO SLIDE*/
-			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) {
+	
+			goto : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) : void => {
 				slides.eq(currentSlide).animate({opacity: 0}, duration);
 				slides.eq(nextSlide).animate({opacity: 1}, duration);
 			},
-			/*FRACTION SLIDING*/
-			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number) {
+			
+			fraction : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number) : void => {
 				slides.eq(nextSlide).css({opacity: Math.abs(fraction)});
 				slides.eq(currentSlide).css({opacity: 1 - Math.abs(fraction)});
 			},
-			/*CYCLES*/
-			true
-		);
+			canCycle : () : boolean => {
+				return true;
+			}
+		});
+	}
+	
+	export interface IEffect {
+		
+		/**
+		 * A method that is ran when the document is ready, and this effect was chosen
+		 * this is used to set up the slides as whished.
+		 * */
+		init(slidesWrapper:JQuery, slides:JQuery, currentSlide:number) : void;
+		
+		/**
+		 * gotoFunction A function that is ran when going directly to a slide.
+		 * The function receives three parameters
+		 * @param slidesWrapper The wrapper around the slides
+		 * @param slides All the slides
+		 * @param currentSlide the current slide in the slides jquery object. slides.eq(currentSlide) will get the current slide
+		 * @param nextSlide same as curretn slide, only, its the next slide.
+		 * @param duration How long the animation should take
+		 * */
+		goto(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) : void;
+		
+		/**
+		 * fraction Gets ran when trying to slide between slides.
+		 * @param slidesWrapper The wrapper around the slides
+		 * @param slides All the slides
+		 * @param currentSlide the current slide in the slides jquery object. slides.eq(currentSlide) will get the current slide
+		 * @param nextSlide same as curretn slide, only, its the next slide.
+		 * @param fraction How much slide
+		 * */
+ 		fraction(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number) : void;
+		
+		/*
+		 * canCycle Whether or not this effect is able to go form the last to the first, or if it
+		 * does not.
+		 * */
+		canCycle() : boolean;
+		
 	}
 }
