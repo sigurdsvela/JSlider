@@ -55,22 +55,27 @@ module jSlider {
 		 * Effects
 		 * */
 		public static SLIDE:Effect = new Effect(
+			/*INIT*/
 			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number):void {
 			},
+			/*GOTO SLIDE*/
 			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) {
 				slidesWrapper.animate({
 					right: ((100) * nextSlide) + "%"
 				}, duration);
 			},
+			/*FRACTION SLIDING*/
 			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number) {
 				fraction = Math.abs(fraction);
 				slidesWrapper.css({
 					right: ((((nextSlide - currentSlide) * fraction) + currentSlide) * 100) + "%"
 				})
 			},
+			/*CYCLES*/
 			false
 		);
 		public static FADE:Effect = new Effect(
+			/*INIT*/
 			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number):void {
 				slidesWrapper.css({
 					"position": "relative"
@@ -85,14 +90,17 @@ module jSlider {
 				slides.css({opacity: 0});
 				slides.eq(currentSlide).css({opacity: 1});
 			},
+			/*GOTO SLIDE*/
 			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) {
 				slides.eq(currentSlide).animate({opacity: 0}, duration);
 				slides.eq(nextSlide).animate({opacity: 1}, duration);
 			},
+			/*FRACTION SLIDING*/
 			function (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number) {
 				slides.eq(nextSlide).css({opacity: Math.abs(fraction)});
 				slides.eq(currentSlide).css({opacity: 1 - Math.abs(fraction)});
 			},
+			/*CYCLES*/
 			true
 		);
 	}
