@@ -230,6 +230,13 @@ class JSlider {
 	}
 
 	/**
+	 * Go to the current slide with a duration of 0.
+	 */
+	private popToCurrent():void {
+		this.effect.gotoSlide(this.slidesWrapper, this.slides, this.currentSlide, this.currentSlide, 0);
+	}
+
+	/**
 	 * Whether or not we are at the last slide
 	 */
 	public atLastSlide():boolean {
@@ -241,6 +248,51 @@ class JSlider {
 	 */
 	public atFirstSlide():boolean {
 		return (this.currentSlide === 0);
+	}
+
+	/**
+	 * "Jerk" the slide to one direction.
+	 * @param amount How much should we jerk. A positive number
+	 *               Indicates that we should towards the right,
+	 *               negavtive = left.
+	 */
+	public jerk(amount:number):void {
+		var _this = this;
+		var c = 0;
+		
+		//Direction. true is next/right, false is left/prev.
+		var direction = (amount>0);
+		
+		//to what fraction should we animate
+		var fraction = 0.03*amount;
+		
+		
+		//Current fraction. this should be zero, but you never know.
+		var currentFraction = this.fraction;
+		
+		//How many times should we run the loop
+		var loopc = 20;
+		var halfWay = loopc/2;
+		
+		var fractInc = (fraction - currentFraction) / loopc;
+		
+		var done = function() {
+			_this.popToCurrent();
+		};
+		
+		var interval = setInterval(function() {
+			if (c >= loopc) {
+				done();
+				clearInterval(interval);
+				return;
+			}
+			if ((c >= halfWay) && ((fractInc < 0 && !direction) || (fractInc > 0 && direction))) { //Flip direction half way
+				fractInc*=-1;
+			}
+			
+			_this.fractionMove(currentFraction+=fractInc);
+			c++;
+		}, 6);
 	}
 
 	/**
@@ -256,6 +308,9 @@ class JSlider {
 
 		if (!(!this.effect.getCanCycle() && this.atFirstSlide())) {
 			this.currentSlide = this.atFirstSlide() ? this.slides.length - 1 : this.currentSlide - 1;
+		} else {
+			this.jerk(-1);
+			return;
 		}
 
 		this.effect.gotoSlide(this.slidesWrapper, this.slides, _prevSlide, this.currentSlide, duration);
@@ -276,6 +331,9 @@ class JSlider {
 
 		if (!(!this.effect.getCanCycle() && this.atLastSlide())) {
 			this.currentSlide = this.atLastSlide() ? 0 : this.currentSlide + 1;
+		} else {
+			this.jerk(1);
+			return;
 		}
 
 		this.effect.gotoSlide(this.slidesWrapper, this.slides, _prevSlide, this.currentSlide, duration);
@@ -309,6 +367,21 @@ class JSlider {
 
 		this.fraction = fraction;
 		this.effect.fractionSlide(this.slidesWrapper, this.slides, this.currentSlide, nextSlide, fraction);
+	}
+	
+	/**
+	 * Almost the same as fraction slide, except we do not do any calculations
+	 * on whether or not the effect is cycelable or if we are on the last slider or not. Simply move.
+	 */
+	private fractionMove(fraction:number) {
+		var nextSlide:number;
+		if (fraction > 0) {
+			nextSlide = this.currentSlide + 1;
+		} else {
+			nextSlide = this.currentSlide - 1;
+		}
+		this.effect.fractionSlide(this.slidesWrapper, this.slides, this.currentSlide, nextSlide, fraction);
+		this.fraction = fraction;
 	}
 
 	/**
