@@ -48,6 +48,34 @@ slider.start(); //This starts the automated slider
 
 The code above will make JSlider wait for 5 seconds before it slides to the next slide.
 
+###Effects
+You can choose the effect you would like to use to slide
+between the slides. You can allso implement you own, which you can read about below.
+The build in effect can be accesed by typeing jSlider.Effect.<em>effect name</em>
+The built in effect are, as of the current version, as follows.
+<ul>
+	<li><b>SLIDE<b> Simple slide animation, will not cycle(Will not go from the last slide to the first one)<li>
+	<li><b>REWIND_SLIDE</b> Same as slide, only with the rewind effect when it the slides "come to an end" </li>
+	<li><b>FADE</b> Fades between the slides. Will rewind. </li>
+</ul>
+
+To implement you own effect, create an object
+```js
+{	
+	/**
+	 * This function will
+	 * be ran when the slide loads,
+	 * and is to initialize stuff you need.
+	 * The fade effect for instance makes all slides
+	 * position absolute, so to be able to fade between the slides.
+	 * The SLIDE & REWIND slide for instance does not use this function.
+	 */
+	init : function(){}
+
+	goto: function(){}
+}
+```
+
 ###Options
 Currently avaible options are:
 <ul>
