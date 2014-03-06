@@ -8,7 +8,7 @@ class JSlider {
 	private options:jSlider.Options;
 	private sliderWrapper:JQuery;
 	private slidesWrapper:JQuery;
-	private slides:JQuery;
+	private slides:JQuery=jQuery();
 	private currentSlide:number;
 	private timeout:number;
 	private eventListeners:Array<Array<(jQuery) => void>>;
