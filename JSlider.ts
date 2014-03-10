@@ -13,6 +13,8 @@ class JSlider {
 	private timeout:number;
 	private eventListeners:Array<Array<(jQuery) => void>>;
 	private effect:jSlider.Effect;
+	private ready:boolean = false;
+	private started:boolean = false;
 
 	/**
 	 * Bounds of a single slide
@@ -147,7 +149,11 @@ class JSlider {
 				_this.registerButton(button, buttons[button]);
 			}
 			
+			_this.ready = true;
 			_this.trigger("ready");
+			if (_this.started) {
+				_this.start();
+			}
 		});
 	}
 
@@ -210,6 +216,9 @@ class JSlider {
 	 * Start the slider
 	 */
 	public start():void {
+		this.started = true;
+		if (!this.ready || this.started) return;
+		
 		this.trigger('start');
 		var _this = this;
 		this.timeout = setInterval(():void => {
@@ -221,6 +230,7 @@ class JSlider {
 	 * Stop the slider
 	 */
 	public stop():void {
+		this.started = false;
 		this.trigger('stop');
 		clearInterval(this.timeout);
 	}
