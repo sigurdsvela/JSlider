@@ -95,10 +95,6 @@ Currently avaible options are:
 		<b>on</b>
 		<ul>
 			<li><em>eventName<em> => <em>A function that will be called on said event, with a jQuery object of the current slide as the first(and only) parameter</li>
-			<li><b>(function(currentSlide)) => any)</b> : Register a function </li>
-			<li><b>(function(currentSlide)) => any)</b> : Register a function that is triggered when the slider slides to the previous slide</li>
-			<li><b>(function(currentSlide)) => any)stop</b> : Register a function that is </li>
-			<li><b>(function(currentSlide)) => any)start</b> : Register a function that is triggered when the slider slides is started</li>
 		</ul>
 	</li>
 </ul>
