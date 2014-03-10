@@ -146,6 +146,8 @@ class JSlider {
 				if (!buttons.hasOwnProperty(button)) continue;
 				_this.registerButton(button, buttons[button]);
 			}
+			
+			_this.trigger("ready");
 		});
 	}
 
