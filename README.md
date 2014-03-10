@@ -94,6 +94,7 @@ Currently avaible options are:
 	<li>
 		<b>on</b>
 		<ul>
+			<li><em>eventName<em> => <em>A function that will be called on said event, with a jQuery object of the current slide as the first(and only) parameter</li>
 			<li><b>(function(currentSlide))slide</b> : Register an event that is triggered when the slider slides</li>
 			<li><b>(function(currentSlide)) => any)next</b> : Register a function that is triggered when the slider slides to the next slide</li>
 			<li><b>(function(currentSlide)) => any)pre</b> : Register a function that is triggered when the slider slides to the previous slide</li>
@@ -103,7 +104,9 @@ Currently avaible options are:
 	</li>
 </ul>
 
+###Events
 
+</ul>
 
 
 ###Functions
