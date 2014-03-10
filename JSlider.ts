@@ -168,6 +168,7 @@ class JSlider {
 		for (var i = 0; i < listeners.length; i++) {
 			listeners[i](this.getCurrentSlide());
 		}
+		this.sliderWrapper.trigger('jslider-' + event);
 	}
 
 	/**
