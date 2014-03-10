@@ -15,7 +15,8 @@ module jSlider {
 				"next": [],
 				"prev": [],
 				"start": [],
-				"stop": []
+				"stop": [],
+				"ready": []
 			}
 		};
 
