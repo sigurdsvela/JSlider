@@ -106,11 +106,6 @@ Currently avaible options are:
 ###Events
 <ul>
 	<li><b>ready</b> Will be triggered when the slider is ready. This is after the JSlider has done it's style changes and the effect has been initilized. Do not rely on heigh/width of the slides(&lt;li>) before this event has been triggered.</li>
-	<li><b>slide</b> Will be triggered when the slider slides, in either direction.</li>
-	<li><b>next</b> Will be triggered when the slider slides to the next slide.</li>
-	<li><b>pre</b> Will be triggered when the slider slides to the previous slide.</li>
-	<li><b>stop</b> Will be triggered when the slider is stoped.</li>
-	<li><b>start</b> Will be triggered when the slider is started.</li>
 </ul>
 
 ###Bining event
@@ -139,6 +134,7 @@ There is also some avaible function in the JSlider object.
 	<li><b>(void)stop()</b> : Stop the slider </li>
 	<li><b>(void)next()</b> : Go to the next slide </li>
 	<li><b>(void)prev()</b> : Go to the previous slide </li>
+	<li><b>(void)on("eventName", function(currentSlider){})</b> : Bind an event </li>
 </ul>
 
 
