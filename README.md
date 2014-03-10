@@ -95,18 +95,41 @@ Currently avaible options are:
 		<b>on</b>
 		<ul>
 			<li><em>eventName<em> => <em>A function that will be called on said event, with a jQuery object of the current slide as the first(and only) parameter</li>
-			<li><b>(function(currentSlide))slide</b> : Register an event that is triggered when the slider slides</li>
-			<li><b>(function(currentSlide)) => any)next</b> : Register a function that is triggered when the slider slides to the next slide</li>
-			<li><b>(function(currentSlide)) => any)pre</b> : Register a function that is triggered when the slider slides to the previous slide</li>
-			<li><b>(function(currentSlide)) => any)stop</b> : Register a function that is triggered when the slider slides is stoped</li>
+			<li><b>(function(currentSlide)) => any)</b> : Register a function </li>
+			<li><b>(function(currentSlide)) => any)</b> : Register a function that is triggered when the slider slides to the previous slide</li>
+			<li><b>(function(currentSlide)) => any)stop</b> : Register a function that is </li>
 			<li><b>(function(currentSlide)) => any)start</b> : Register a function that is triggered when the slider slides is started</li>
 		</ul>
 	</li>
 </ul>
 
 ###Events
-
+<ul>
+	<li><b>ready</b> Will be triggered when the slider is ready. This is after the JSlider has done it's style changes and the effect has been initilized. Do not rely on heigh/width of the slides(&lt;li>) before this event has been triggered.</li>
+	<li><b>slide</b> Will be triggered when the slider slides, in either direction.</li>
+	<li><b>next</b> Will be triggered when the slider slides to the next slide.</li>
+	<li><b>pre</b> Will be triggered when the slider slides to the previous slide.</li>
+	<li><b>stop</b> Will be triggered when the slider is stoped.</li>
+	<li><b>start</b> Will be triggered when the slider is started.</li>
 </ul>
+
+###Bining event
+**You may bind event one of three ways.**
+```js
+var slider = new JSlider("#slider", {
+	"on" : {
+		"eventName" : function(currentSlide) {} //FIRST WAY
+	}
+});
+
+slider.on('eventName', function(currentSlider) {}); //SECOND WAY
+
+$("#slider").on('jslider-eventName', function(currentSlider) {}); //THIRD WAY
+
+```
+
+As you may notice, if you want to use jQuery when binding the event, you must
+prefix the event name with "jslider-". So instead of "start" it will be "jslider-start".
 
 
 ###Functions
