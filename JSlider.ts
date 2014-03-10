@@ -172,11 +172,12 @@ class JSlider {
 	 * @param event The event
 	 */
 	private trigger(event:string) {
+		var currentSlide = this.getCurrentSlide();
 		var listeners:{(JQuery) : void}[] = this.eventListeners[event];
 		for (var i = 0; i < listeners.length; i++) {
-			listeners[i](this.getCurrentSlide());
+			listeners[i](currentSlide);
 		}
-		this.sliderWrapper.trigger('jslider-' + event, this.getCurrentSlide());
+		this.sliderWrapper.trigger('jslider-' + event, currentSlide);
 	}
 
 	/**
