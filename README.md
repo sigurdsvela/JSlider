@@ -14,7 +14,7 @@ Usage is fairly simple. To create the most simple slider, you must have a div, w
 which has LI elements in it. These LI elements are your slides.
 
 ```html
-<div id="slider">
+<div id="yout-slider-id">
 	<ul id="slides">
 		<li class="slide">slide1</div>
 		<li class="slide">slide2</div>
@@ -23,13 +23,13 @@ which has LI elements in it. These LI elements are your slides.
 </div>
 ```
 
-The "class" and "id" attribtues are *not* required.
+The "class" and "id" attribtues are *not* required, although you do need a way to select the DIV later.
 
 After you have those elements, you need to write some javascript. Go inside
 a JavaScrpt file, or create a *script* tag and write.
 
 ```js
-var slider = new JSlider("#your-slider-id"); //You can use any selector here
+var slider = new JSlider("div#your-slider-id"); //You can use any selector here
 slider.start(); //This starts the automated slider
 ```
 
