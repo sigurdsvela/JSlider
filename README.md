@@ -130,7 +130,7 @@ There is also some avaible function in the JSlider object.
 	<li><b>(void)stop()</b> : Stop the slider </li>
 	<li><b>(void)next()</b> : Go to the next slide </li>
 	<li><b>(void)prev()</b> : Go to the previous slide </li>
-	<li><b>(void)on("eventName", function(currentSlider){})</b> : Bind an event </li>
+	<li><b>(void)on("eventName", function(currentSlide){})</b> : Bind an event </li>
 </ul>
 
 
