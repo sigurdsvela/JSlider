@@ -14,7 +14,7 @@ Usage is fairly simple. To create the most simple slider, you must have a div, w
 which has LI elements in it. These LI elements are your slides.
 
 ```html
-<div id="yout-slider-id">
+<div id="your-slider-id">
 	<ul id="slides">
 		<li class="slide">slide1</div>
 		<li class="slide">slide2</div>
@@ -40,7 +40,7 @@ You may also set some options for JSlider. This is done by passing an Object con
 For example, to set how long the slider should stay at each slide, do:
 
 ```js
-var slider = new JSlider("#your-slider-id", {
+var slider = new JSlider("div#your-slider-id", {
 	"delay" : 5000 //Set the delay to 5000ms
 }); //You can use any selector here
 slider.start(); //This starts the automated slider
@@ -107,7 +107,7 @@ Currently avaible options are:
 ###Bining event
 **You may bind event one of three ways.**
 ```js
-var slider = new JSlider("#slider", {
+var slider = new JSlider("div#your-slider-id", {
 	"on" : {
 		"eventName" : function(currentSlide) {} //FIRST WAY
 	}
@@ -115,7 +115,7 @@ var slider = new JSlider("#slider", {
 
 slider.on('eventName', function(currentSlider) {}); //SECOND WAY
 
-$("#slider").on('jslider-eventName', function(currentSlider) {}); //THIRD WAY
+$("div#your-slider-id").on('jslider-eventName', function(currentSlider) {}); //THIRD WAY
 
 ```
 
