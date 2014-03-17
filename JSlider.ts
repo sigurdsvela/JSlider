@@ -240,14 +240,14 @@ class JSlider {
 	 * Go back to the current slide
 	 */
 	private gotoCurrent():void {
-		this.effect.gotoSlide(this.slidesWrapper, this.slides, this.currentSlide, this.currentSlide, this.options.get('duration'));
+		this.effect.gotoSlide(this.slidesWrapper, this.slides, this.currentSlide, this.currentSlide, jSlider.Direction.NONE, this.options.get('duration'));
 	}
 
 	/**
 	 * Go to the current slide with a duration of 0.
 	 */
 	private popToCurrent():void {
-		this.effect.gotoSlide(this.slidesWrapper, this.slides, this.currentSlide, this.currentSlide, 0);
+		this.effect.gotoSlide(this.slidesWrapper, this.slides, this.currentSlide, this.currentSlide, jSlider.Direction.NONE, 0);
 	}
 
 	/**
@@ -327,7 +327,7 @@ class JSlider {
 			return;
 		}
 
-		this.effect.gotoSlide(this.slidesWrapper, this.slides, _prevSlide, this.currentSlide, duration);
+		this.effect.gotoSlide(this.slidesWrapper, this.slides, _prevSlide, this.currentSlide, jSlider.Direction.PREV, duration);
 		this.trigger('slide');
 		this.trigger('prev');
 	}
@@ -350,7 +350,7 @@ class JSlider {
 			return;
 		}
 
-		this.effect.gotoSlide(this.slidesWrapper, this.slides, _prevSlide, this.currentSlide, duration);
+		this.effect.gotoSlide(this.slidesWrapper, this.slides, _prevSlide, this.currentSlide, jSlider.Direction.NEXT, duration);
 		this.trigger('slide');
 		this.trigger('next');
 	}

@@ -1,7 +1,12 @@
 module jSlider {
+	export class Direction {
+		public static NEXT:number = 1;
+		public static PREV:number = -1;
+		public static NONE:number = 0;
+	}
 	export class Effect {
 		private initFunction:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number) => void;
-		private gotoFunction:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) => void;
+		private gotoFunction:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, direction:number, duration:number) => void;
 		private fraction:(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number) => void;
 		private canCycle:boolean;
 
@@ -21,8 +26,8 @@ module jSlider {
 			this.initFunction(slidesWrapper, slides, currentSlide);
 		}
 
-		public gotoSlide(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number):void {
-			this.gotoFunction(slidesWrapper, slides, currentSlide, nextSlide, duration);
+		public gotoSlide(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, direction:number, duration:number):void {
+			this.gotoFunction(slidesWrapper, slides, currentSlide, nextSlide, direction, duration);
 		}
 
 		public fractionSlide(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number):void {
@@ -44,7 +49,7 @@ module jSlider {
 		public static SLIDE:Effect = new Effect({
 			init : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number):void => {
 			},
-			goto : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) : void => {
+			goto : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, direction:number, duration:number) : void => {
 				slidesWrapper.animate({
 					right: ((100) * nextSlide) + "%"
 				}, duration);
@@ -63,7 +68,7 @@ module jSlider {
 		public static REWIND_SLIDE:Effect = new Effect({
 			init : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number):void => {
 			},
-			goto : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) : void => {
+			goto : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, direction:number, duration:number) : void => {
 				slidesWrapper.animate({
 					right: ((100) * nextSlide) + "%"
 				}, duration);
@@ -95,7 +100,7 @@ module jSlider {
 				slides.eq(currentSlide).css({opacity: 1});
 			},
 	
-			goto : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) : void => {
+			goto : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, direction:number, duration:number) : void => {
 				slides.eq(currentSlide).animate({opacity: 0}, duration);
 				slides.eq(nextSlide).animate({opacity: 1}, duration);
 			},
@@ -127,7 +132,7 @@ module jSlider {
 		 * @param nextSlide same as curretn slide, only, its the next slide.
 		 * @param duration How long the animation should take
 		 * */
-		goto(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, duration:number) : void;
+		goto(slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, direction:number, duration:number) : void;
 		
 		/**
 		 * fraction Gets ran when trying to slide between slides.
