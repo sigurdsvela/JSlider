@@ -83,6 +83,43 @@ module jSlider {
 				return true;
 			}
 		});
+
+		public static CAROUSEL:Effect = new Effect({
+			init : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number):void => {
+				console.log(slides);
+				slides.css({
+					"position" : "absolute",
+					"left" : "-100%"
+				});
+				slides.eq(currentSlide).css("left", "0%"); //Move current slide into place
+			},
+			goto : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, direction:number, duration:number) : void => {
+				var $nextSlide = slides.eq(nextSlide);
+				var $currentSlide = slides.eq(currentSlide);
+				if (direction === -1) {
+					//Going back
+					$nextSlide.css({"left" : "-100%"});
+					$currentSlide.animate({"left" : "100%"});
+					$nextSlide.animate({"left" : "0%"});
+				} else if (direction === 1) {
+					//Going next
+					$nextSlide.css({"left" : "100%"});
+					$currentSlide.animate({"left" : "-100%"});
+					$nextSlide.animate({"left" : "0%"});
+				} else if (direction === 0) {
+					this.init(slidesWrapper, slides, currentSlide);
+				}
+			},
+			fraction : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, fraction:number) : void => {
+				fraction = Math.abs(fraction);
+				slidesWrapper.css({
+					right: ((((nextSlide - currentSlide) * fraction) + currentSlide) * 100) + "%"
+				})
+			},
+			canCycle : () : boolean => {
+				return true;
+			}
+		});
 		
 		public static FADE:Effect = new Effect({
 			init : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number) : void => {
