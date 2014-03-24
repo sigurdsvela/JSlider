@@ -95,17 +95,17 @@ module jSlider {
 			goto : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number, nextSlide:number, direction:number, duration:number) : void => {
 				var $nextSlide = slides.eq(nextSlide);
 				var $currentSlide = slides.eq(currentSlide);
-				if (direction === -1) {
+				if (direction === Direction.PREV) {
 					//Going back
 					$nextSlide.css({"left" : "-100%"});
 					$currentSlide.animate({"left" : "100%"});
 					$nextSlide.animate({"left" : "0%"});
-				} else if (direction === 1) {
+				} else if (direction === Direction.NEXT) {
 					//Going next
 					$nextSlide.css({"left" : "100%"});
 					$currentSlide.animate({"left" : "-100%"});
 					$nextSlide.animate({"left" : "0%"});
-				} else if (direction === 0) {
+				} else if (direction === Direction.NONE) {
 					this.init(slidesWrapper, slides, currentSlide);
 				}
 			},
