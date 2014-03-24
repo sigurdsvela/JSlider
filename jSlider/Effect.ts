@@ -86,7 +86,6 @@ module jSlider {
 
 		public static CAROUSEL:Effect = new Effect({
 			init : (slidesWrapper:JQuery, slides:JQuery, currentSlide:number):void => {
-				console.log(slides);
 				slides.css({
 					"position" : "absolute",
 					"left" : "-100%"
