@@ -98,13 +98,13 @@ module jSlider {
 				if (direction === Direction.PREV) {
 					//Going back
 					$nextSlide.css({"left" : "-100%"});
-					$currentSlide.animate({"left" : "100%"});
-					$nextSlide.animate({"left" : "0%"});
+					$currentSlide.stop().animate({"left" : "100%"});
+					$nextSlide.stop().animate({"left" : "0%"});
 				} else if (direction === Direction.NEXT) {
 					//Going next
 					$nextSlide.css({"left" : "100%"});
-					$currentSlide.animate({"left" : "-100%"});
-					$nextSlide.animate({"left" : "0%"});
+					$currentSlide.stop().animate({"left" : "-100%"});
+					$nextSlide.stop().animate({"left" : "0%"});
 				} else if (direction === Direction.NONE) {
 					this.init(slidesWrapper, slides, currentSlide);
 				}
