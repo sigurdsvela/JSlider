@@ -1,8 +1,8 @@
 JSlider
 =======
-<b>Download the lates version from releases to get started :)</b>
-<b>Pull requests are very welcome</b>
-<b>If you discover an issue, create one :)</b>
+LGPL tl;dr
+
+Use for free, in non-open source projects, and open source project. Modifications of JSlider itself must be licesed under LGPL of GPL(Open Source).
 
 A slider library that allows for simple creation of slider, and endless customization.
 
@@ -133,6 +133,9 @@ There is also some avaible function in the JSlider object.
 	<li><b>(void)on("eventName", function(currentSlide){})</b> : Bind an event </li>
 </ul>
 
+
+###Contributing
+Make a fork and send pull requests.
 
 <b>Dependecies</b>
 <ul>
