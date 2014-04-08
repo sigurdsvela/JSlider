@@ -4,6 +4,8 @@ LGPL tl;dr
 
 Use for free, in non-open source projects, and open source project. Modifications of JSlider itself must be licesed under LGPL of GPL(Open Source).
 
+Creation of new effects for JSlider(Documentation below) does *not* count as a modification to JSlider itself, and can therfor be licensed as you wish.
+
 A slider library that allows for simple creation of slider, and endless customization.
 
 To get started, go to "releases" and download the latest non-prerelease version, and include it.
