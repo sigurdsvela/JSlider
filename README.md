@@ -143,3 +143,7 @@ Make a fork and send pull requests.
 <ul>
 	<li>jQuery</li>
 </ul>
+
+
+###Versioning
+JSlider uses [semantic versioning](http://www.semver.org).
