@@ -147,3 +147,6 @@ Make a fork and send pull requests.
 
 ###Versioning
 JSlider uses [semantic versioning](http://www.semver.org).
+
+
+Copyright &copy; 2014 Sigurd Berg Svela
