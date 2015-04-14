@@ -2,7 +2,7 @@ JSlider
 =======
 LGPL tl;dr
 
-Use for free, in non-open source projects, and open source project. Modifications of JSlider itself must be licesed under LGPL of GPL(Open Source).
+Use for free, in comercial, and open source project alike. Modifications of JSlider itself must be licesed under LGPL of GPL(Open Source).
 
 Creation of new effects for JSlider(Documentation below) does *not* count as a modification to JSlider itself, and can therfor be licensed as you wish.
 
@@ -56,7 +56,8 @@ between the slides. You can allso implement you own, which you can read about be
 The build in effect can be accesed by typeing jSlider.Effect.<em>effect name</em>
 The built in effect are, as of the current version, as follows.
 <ul>
-	<li><b>SLIDE<b> Simple slide animation, will not cycle(Will not go from the last slide to the first one)<li>
+	<li><b>CAROUSEL</b>The classic slider effect. Slides between the slides, and when it comes to the last slide, it slide naturally to the first one</li>
+	<li><b>SLIDE</b> Simple slide animation, but will not carousel. Rather, it will stop on the last one. Mainly for use with a Slide thats just meant for touch scroll.</li>
 	<li><b>REWIND_SLIDE</b> Same as slide, only with the rewind effect when it the slides "come to an end" </li>
 	<li><b>FADE</b> Fades between the slides. Will rewind. </li>
 </ul>
@@ -70,16 +71,15 @@ To implement you own effect, create an object
 	 * and is to initialize stuff you need.
 	 * The fade effect for instance makes all slides
 	 * position absolute, so to be able to fade between the slides.
-	 * The SLIDE & REWIND slide for instance does not use this function.
 	 */
-	init : function(){}
+	init: function(){}
 
 	goto: function(){}
 }
 ```
 
 ###Options
-Currently avaible options are:
+Currently avaible options are(passed in as an object as the second parameter to the JSlider constructor):
 <ul>
 	<li><b>(number)delay</b> : (ms) Set how long JSlider should wait before it slide.</li>
 	<li><b>(number)duration</b> : (ms) Sets the animation duration</li>
